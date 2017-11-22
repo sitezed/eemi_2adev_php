@@ -27,10 +27,11 @@ function dump($arg, $mode = false) {
 
 // supprimer tous les caracters speciaux et remplacer les espaces
 function clean($string) {
-	$string = str_replace(' ', '_', $string); // Replaces all spaces with hyphens.
-	$string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+	$string = str_replace(' ', '_', $string); // Replaces all spaces with underscores.
+	$string = preg_replace('/[^A-Za-z0-9\-_]/', '', $string); // Removes special chars.
 	$string = preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
 	$string = preg_replace('/_+/', '_', $string); // Replaces multiple underscores with single one.
+	$string = strtolower($string); // on passe en minuscule
 
 	return $string;
 }
