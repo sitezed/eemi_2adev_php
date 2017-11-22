@@ -1,6 +1,16 @@
 <?php
 require_once('../includes/init.inc.php');
 $title = 'gestion des produits';
+$msg = '';
+if(!empty($_SESSION['error_message'])) {
+  foreach ($_SESSION['error_message'] as $key => $value) {
+    $msg .= '<div class="alert alert-danger">'.$value.'</div>';
+  }
+  unset($_SESSION['error_message']);
+} else if(!empty($_SESSION['success_message'])) {
+	$msg = '<div class="alert alert-success">'. $_SESSION['success_message'] . '</div>';
+	unset($_SESSION['success_message']);
+}
 require_once('../includes/haut.inc.php');
 require_once('../includes/menu.inc.php');
 ?>
@@ -16,7 +26,7 @@ Formulaire de saisie d'un produit :
 - photo
 - quantite
 -->
-
+  <?= $msg ?>
   <form class="col-md-4" action="traitement-ajout-produit.php" enctype="multipart/form-data" method="post">
     <div class="form-group">
       <label for="titre">Titre</label>
