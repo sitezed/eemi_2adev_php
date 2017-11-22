@@ -68,5 +68,9 @@ if(!$empty) {
 	}
 
 } else {
-	dd($champsVides);
+	foreach ( $champsVides as $key => $value ) {
+		$_SESSION['error_message'][] = 'Le champ ' . $value . ' ne doit pas etre vide';
+	};
+
+	header('location:' . PUBLIC_URL . '/admin/gestion_produits.php');
 }
