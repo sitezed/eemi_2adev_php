@@ -34,15 +34,18 @@ if(!$empty) {
 	}
 
 	// je traite la photo
-	if(!empty($_FILES['photo'])) {
+	if($_FILES['photo']['error'] === 0) {
 		// je vais isoler le texte apres le dernier point, qui correspond donc a l'extension du fichier
 		// exemple mon fichier se nomme monimage.jpeg, je decoupe le ".jpeg"
 		$extension = strrchr( $_FILES['photo']['name'], '.' );
 		$nomPhoto  = 'photo_' . mt_rand( 0, 99999 ) . $extension; // photo_3738.jpeg
 		// dans $_FILES['photo']['tmp_name'], se trouve le fichier de maniere temporaire. Je le deplace dans le dossier photos, et je le renomme en photo_[chiffre_au_hasar].extension
 		move_uploaded_file( $_FILES['photo']['tmp_name'], '../assets/photos/' . $nomPhoto );
-	} else {
+	} else if($_FILES['photo']['error'] === 4) {
 		$nomPhoto = 'product-image-placeholder.jpg'; // mon image a defaut si je n'ai pas d'image
+	} else {
+		$_SESSION['error_message'][] = 'Erreur lors de l\'upload du fichier image';
+		$ok = false;
 	}
 
 	if($ok) {
@@ -61,16 +64,13 @@ if(!$empty) {
 		} else {
 			$_SESSION['error_message'][] = 'Une erreur s\'est produite. Veuillez contacter l\'administrateur';
 		}
-
-		header('location:' . PUBLIC_URL . '/admin/gestion_produits.php');
-	} else {
-		header('location:' . PUBLIC_URL . '/admin/gestion_produits.php');
 	}
-
 } else {
 	foreach ( $champsVides as $key => $value ) {
 		$_SESSION['error_message'][] = 'Le champ ' . $value . ' ne doit pas etre vide';
 	};
-
-	header('location:' . PUBLIC_URL . '/admin/gestion_produits.php');
 }
+
+$_SESSION['old_values'] = $_POST; // je renvoi les valeurs du $_POST
+
+header('location:' . PUBLIC_URL . '/admin/gestion_produits.php');
