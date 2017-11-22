@@ -17,6 +17,35 @@ Formulaire de saisie d'un produit :
 - quantite
 -->
 
+  <form class="col-md-4" action="traitement-ajout-produit.php" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input type="text" name="titre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="reference">Reference</label>
+      <input type="text" name="reference" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="prix">Prix</label>
+      <input type="text" name="prix" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" name="description" cols="30" rows="10"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Photo</label>
+      <!-- BOUTON UPLOAD type="file" -->
+      <input type="file" name="photo" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="quantite">Quantite</label>
+      <input type="text" name="quantite" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
+
 
 
 

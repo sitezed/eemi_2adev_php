@@ -24,3 +24,12 @@ function dump($arg, $mode = false) {
 	}
 	echo '</pre>';
 }
+
+function clean($string) {
+	$string = str_replace(' ', '_', $string); // Replaces all spaces with hyphens.
+	$string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+	$string = preg_replace('/-+/', '-', $string);
+	$string = preg_replace('/_+/', '_', $string);
+
+	return $string; // Replaces multiple hyphens with single one.
+}
