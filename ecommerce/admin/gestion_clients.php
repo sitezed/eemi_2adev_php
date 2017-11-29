@@ -2,7 +2,6 @@
 require_once('../includes/init.inc.php');
 $title = 'gestion des produits';
 $msg = '';
-$active = 'ajouter_produit';
 if(!empty($_SESSION['error_message'])) {
   foreach ($_SESSION['error_message'] as $key => $value) {
     $msg .= '<div class="alert alert-danger">'.$value.'</div>';
@@ -21,16 +20,18 @@ require_once('../includes/haut.inc.php');
 require_once('../includes/menu.inc.php');
 ?>
 <h1><?= $title ?></h1>
-<h2>Ajouter un produit</h2>
+<h2>Ajouter un client</h2>
 <!--
 
-Formulaire de saisie d'un produit :
-- reference
-- titre
-- prix
-- description
-- photo
-- quantite
+Formulaire de saisie d'un client :
+- prenom
+- nom
+- avatar
+- email
+- mot_de_passe
+- ville
+- code postal
+- adresse
 -->
   <?= $msg ?>
   <form class="col-md-4" action="traitement-ajout-produit.php" enctype="multipart/form-data" method="post">

@@ -2,7 +2,7 @@
 // Instruction d'affichage.
 echo 'Bonjour<br>';
 //---------------------------------------
-// concaténation.
+// concatï¿½nation.
 $x = "Hello";
 $y = "tout le monde";
 echo $x . ' ' . $y . '<br>';
@@ -22,14 +22,14 @@ echo "$prenom<br>";
 $a = 10; $b = 5; $c = 2;
 if($a > $b)
 {
-	echo '$a est bien supérieur a $b<br>';
+	echo '$a est bien supï¿½rieur a $b<br>';
 }
 else
 {
-	echo '$a n\'est pas supérieur a $b<br>';
+	echo '$a n\'est pas supï¿½rieur a $b<br>';
 }
-if($a > $b)	echo '$a est bien supérieur a $b<br>';
-else echo '$a n\'est pas supérieur a $b<br>';
+if($a > $b)	echo '$a est bien supï¿½rieur a $b<br>';
+else echo '$a n\'est pas supï¿½rieur a $b<br>';
 
 if($a > $b && $b > $c) // && AND
 {
@@ -43,15 +43,15 @@ if($a == 9 || $b > $c) // || OR
 
 if($a == 8)
 {
-	echo '$a est égal a 8<br>';
+	echo '$a est ï¿½gal a 8<br>';
 }
 elseif($a != 10)
 {
-	echo '$a est différent de 10<br>';
+	echo '$a est diffï¿½rent de 10<br>';
 }
 else
 {
-	echo 'message par défaut.<br>';
+	echo 'message par dï¿½faut.<br>';
 }
 
 $couleur = 'bleu';
@@ -61,25 +61,25 @@ elseif($couleur == 'vert') echo 'la couleur c\'est vert<br>';
 elseif($couleur == 'orange') echo 'la couleur c\'est orange<br>';
 else echo 'autre couleur <br>';
 
-echo ($a == 10) ? "a est égal a 10<br>" : "a n'est pas égal a 10<br>";
+echo ($a == 10) ? "a est ï¿½gal a 10<br>" : "a n'est pas ï¿½gal a 10<br>";
 
 $z = (isset($a)) ? $a : '';
 echo $z . '<br>'; // 10
 
 $e = 1;
 $f = "1";
-if($e == $f)	echo '$e est bien égal a $f<br>';
-if($e === $f)	echo '$e est bien égal a $f<br>';
+if($e == $f)	echo '$e est bien ï¿½gal a $f<br>';
+if($e === $f)	echo '$e est bien ï¿½gal a $f<br>';
 /*
 = affectation.
 == comparaison de la valeur.
 === comparaison de la valeur et du type.
 */
 //------------------------------------------------------------------
-// fonctions prédéfinies
+// fonctions prï¿½dï¿½finies
 $pseudo = 'joker';
 echo iconv_strlen($pseudo) . '<br>'; // 5 caracteres.
-	// Description : Retourne le nombre de caractères d'une chaîne.
+	// Description : Retourne le nombre de caractï¿½res d'une chaï¿½ne.
 	// Liste des arguments attendus : chaine de caractere.
 	// Valeurs de retour : nombre de caractere de la chaine.
 
@@ -156,9 +156,9 @@ echo '<pre>'; print_r($listePrenom); echo '</pre>';
 var_dump($listePrenom);
 echo implode($listePrenom, '<br>');
 echo implode('<br>', $listePrenom);
-	// description : Rassemble les éléments d'un tableau en une chaîne.
+	// description : Rassemble les ï¿½lï¿½ments d'un tableau en une chaï¿½ne.
 	// parametres attendus : array , caractere de separation.
-	// valeur de retour : retourne une chaine de caractère.
+	// valeur de retour : retourne une chaine de caractï¿½re.
 echo '<br>' . $listePrenom[1] . '<br>';
 echo '<br>';
 foreach($listePrenom AS $indice => $valeur)
@@ -189,8 +189,8 @@ echo $etudiant->prenom . '<br>';
 echo $etudiant->age . '<br>';
 echo $etudiant->pays() . '<br>';
 
-// Une classe permet de regrouper plusieurs éléments (variables, fonction, array) en fonction d'un même sujet.
-// Pour utiliser une classe, il est nécessaire d'écrire "new" afin de l'instancier. $etudiant est un objet issue de la classe Etudiant.
+// Une classe permet de regrouper plusieurs ï¿½lï¿½ments (variables, fonction, array) en fonction d'un mï¿½me sujet.
+// Pour utiliser une classe, il est nï¿½cessaire d'ï¿½crire "new" afin de l'instancier. $etudiant est un objet issue de la classe Etudiant.
 
 
 /*
@@ -215,6 +215,17 @@ $tableau = [
 'objet' => 'chaise'
 ];
 
+// rappel tableaux PHP
+$tableau = [['septembre'=>'fraises'], ['septembre'=>'pommes'], ['septembre'=>'bananes'], ['septembre'=>'oranges']];
+$tableau2 = ['septembre' => 'framboises'];
+echo $tableau2['septembre']; // framboises
+
+echo $tableau[0]['septembre']; // fraise
+foreach ( $tableau as $key => $value ) {
+	echo $key . ':' . $value['septembre'] . '<br>';
+}
+
+var_dump($tableau);
 
 
 
