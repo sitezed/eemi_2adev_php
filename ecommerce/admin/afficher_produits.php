@@ -3,14 +3,17 @@ require_once('../includes/init.inc.php');
 $title = 'Affichage des produits';
 $msg = '';
 $active = 'afficher_produits';
-if(!empty($_SESSION['error_message'])) {
-  foreach ($_SESSION['error_message'] as $key => $value) {
-    $msg .= '<div class="alert alert-danger">'.$value.'</div>';
-  }
-  unset($_SESSION['error_message']);
-} else if(!empty($_SESSION['success_message'])) {
-	$msg = '<div class="alert alert-success">'. $_SESSION['success_message'] . '</div>';
-	unset($_SESSION['success_message']);
+
+// suppression d'un produit
+if(!empty($_GET['suppr']) && is_numeric($_GET['suppr'])) {
+	$delete = $pdo->prepare( 'DELETE FROM produits WHERE id = :id' );
+	$delete->bindValue( ':id', $_GET['suppr'], PDO::PARAM_INT );
+	$supprOk = $delete->execute();
+	if ( $supprOk ) {
+		$msg = '<div class="alert alert-success">Suppression du produit ' . $_GET['suppr'] . ' OK !</div>';
+	} else {
+		$msg = '<div class="alert alert-danger">Probleme lors de la suppression du produit ' . $_GET['suppr'] . '.<br>Veuillez actualiser la page et reessayer</div>';
+	}
 }
 
 if(!empty($_SESSION['old_values'])) {
@@ -47,8 +50,16 @@ if(!empty($products) && is_array($products)) :
       <?php foreach ( $value as $v ) : ?>
         <td><?= $v ?></td>
       <?php endforeach; ?>
-      <td><i class="fa fa-pencil"></i></td>
-      <td><i class="fa fa-trash"></i></td>
+      <td>
+        <a href="<?= PUBLIC_URL . '/admin/gestion_produits?modif='. $value['id'] ?>">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </td>
+      <td>
+        <a href="<?= '?suppr='. $value['id'] ?>">
+          <i class="fa fa-trash"></i>
+        </a>
+      </td>
     </tr>
   <?php endforeach; ?>
     </tbody>

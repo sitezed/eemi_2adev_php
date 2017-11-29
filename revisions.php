@@ -216,7 +216,21 @@ $tableau = [
 ];
 
 // rappel tableaux PHP
-$tableau = [['septembre'=>'fraises'], ['septembre'=>'pommes'], ['septembre'=>'bananes'], ['septembre'=>'oranges']];
+$tableau = [
+	['septembre'=>'fraises', 'autre valeur' => 'ordinateur'],
+	['septembre'=>'pommes', 'encore valeur' => 'bureau'],
+	['septembre'=>'bananes'],
+	['septembre'=>'oranges']
+];
+
+foreach ( $tableau as $key => $value ) {
+	foreach ( $value as $k => $v ) {
+			echo $v . '</br>';
+	}
+}
+echo '<pre>';
+print_r($tableau);
+echo '</pre>';
 $tableau2 = ['septembre' => 'framboises'];
 echo $tableau2['septembre']; // framboises
 
