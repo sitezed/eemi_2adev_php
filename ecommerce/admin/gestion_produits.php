@@ -3,6 +3,7 @@ require_once('../includes/init.inc.php');
 $title = 'gestion des produits';
 $msg = '';
 $active = 'ajouter_produit';
+
 if(!empty($_SESSION['error_message'])) {
   foreach ($_SESSION['error_message'] as $key => $value) {
     $msg .= '<div class="alert alert-danger">'.$value.'</div>';
@@ -22,17 +23,19 @@ if(!empty($_SESSION['old_values'])) {
 }
 
 if(!empty($_GET['modif']) && is_numeric($_GET['modif'])) {
-  $productToModif = $pdo->prepare('SELECT * FROM produits WHERE id = :id');
-  $productToModif->bindValue(':id', $_GET['modif'], PDO::PARAM_INT);
-  $productToModif->execute();
-  $product = $productToModif->fetch(PDO::FETCH_ASSOC);
+  $product = selectOne('produits', $_GET['modif']);
+  extract($product); // on extract $product ce qui nous donne acces aux variables qui vont preremplir les values du formulaire
 }
+
+
+$typeTitre = (!empty($_GET['modif'])) && is_numeric($_GET['modif']) ? 'Modifier' : 'Ajouter';
+$typeBouton = (!empty($_GET['modif'])) && is_numeric($_GET['modif']) ? 'Modification' : 'Enregistrement';
 
 require_once('../includes/haut.inc.php');
 require_once('../includes/menu.inc.php');
 ?>
 <h1><?= $title ?></h1>
-<h2>Ajouter un produit</h2>
+<h2><?= $typeTitre ?> un produit</h2>
 <!--
 
 Formulaire de saisie d'un produit :
@@ -45,6 +48,10 @@ Formulaire de saisie d'un produit :
 -->
   <?= $msg ?>
   <form class="col-md-4" action="traitement-ajout-produit.php" enctype="multipart/form-data" method="post">
+
+    <?php if(!empty($id) && is_numeric($id)) : ?>
+	    <input type="hidden" name="id_modif" value="<?= $id ?>">
+    <?php endif; ?>
     <div class="form-group">
       <label for="titre">Titre</label>
       <input type="text" name="titre" value="<?= !empty($titre) ? $titre : '' ?>" class="form-control">
@@ -62,6 +69,14 @@ Formulaire de saisie d'un produit :
       <textarea class="form-control" name="description" cols="30" rows="10"><?= !empty($description) ? $description : '' ?></textarea>
     </div>
     <div class="form-group">
+      <?php
+        if(!empty($photo)) :
+          ?>
+          <input type="hidden" name="photo_presente" value="<?= $photo ?>">
+          <img src="<?= PUBLIC_URL . '/assets/photos/' . $photo ?>" width=100 alt="<?= $photo ?>">
+          <?php
+        endif;
+      ?>
       <label for="exampleInputPassword1">Photo</label>
       <!-- BOUTON UPLOAD type="file" -->
       <input type="file" name="photo" class="form-control">
@@ -70,7 +85,7 @@ Formulaire de saisie d'un produit :
       <label for="quantite">Quantite</label>
       <input type="text" name="quantite" value="<?= !empty($quantite) ? $quantite : '' ?>" class="form-control">
     </div>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="submit" class="btn btn-primary"><?= $typeBouton ?></button>
   </form>
 
 

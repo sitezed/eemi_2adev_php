@@ -4,6 +4,17 @@ $title  = 'Affichage des produits';
 $msg    = '';
 $active = 'afficher_produits';
 
+if(!empty($_SESSION['error_message'])) {
+	foreach ($_SESSION['error_message'] as $key => $value) {
+		$msg .= '<div class="alert alert-danger">'.$value.'</div>';
+	}
+	unset($_SESSION['error_message']);
+} else if(!empty($_SESSION['success_message'])) {
+	$msg = '<div class="alert alert-success">'. $_SESSION['success_message'] . '</div>';
+	unset($_SESSION['success_message']);
+	$success = true;
+}
+
 // suppression d'un produit
 if ( ! empty( $_GET['suppr'] ) && is_numeric( $_GET['suppr'] ) ) {
 	// recuperation du nom de la photo a supprimer

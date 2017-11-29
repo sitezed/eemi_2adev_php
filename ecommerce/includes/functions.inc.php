@@ -45,7 +45,9 @@ function clean($string) {
  *
  * @return mixed
  */
-function selectOne(string $table, int $id) {
+
+$mavariable = 'ok';
+function selectOne($table, $id) {
 
 	global $pdo; // je recupere $pdo de l'exterieur de la fonction
 	$rowToGet = $pdo->prepare('SELECT * FROM '.$table.' WHERE id = :id');
