@@ -56,7 +56,7 @@ if(!empty($products) && is_array($products)) :
         </a>
       </td>
       <td>
-        <a href="<?= '?suppr='. $value['id'] ?>">
+        <a onclick="return confirm('T sûr ??')" href="<?= '?suppr='. $value['id'] ?>">
           <i class="fa fa-trash"></i>
         </a>
       </td>

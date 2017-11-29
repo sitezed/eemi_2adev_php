@@ -14,10 +14,18 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="<?= (!empty($active) && 'afficher_produits' === $active) ? 'active' : '' ?>" ><a href="<?= PUBLIC_URL . '/admin/afficher_produits.php' ?>">Afficher Produits</a></li>
-        <li class="<?= (!empty($active) && 'ajouter_produit' === $active) ? 'active' : '' ?>" ><a href="<?= PUBLIC_URL . '/admin/gestion_produits.php' ?>">Ajouter Produit<span class="sr-only">(current)</span></a></li>
-        <li class="<?= (!empty($active) && 'afficher_clients' === $active) ? 'active' : '' ?>" ><a href="<?= PUBLIC_URL . '/admin/afficher_clients.php' ?>">Afficher Clients</a></li>
-        <li class="<?= (!empty($active) && 'ajouter_client' === $active) ? 'active' : '' ?>" ><a href="<?= PUBLIC_URL . '/admin/gestion_clients.php' ?>">Ajouter Client<span class="sr-only">(current)</span></a></li>
+        <li class="<?= (!empty($active) && 'afficher_produits' === $active) ? 'active' : '' ?>" >
+          <a href="<?= PUBLIC_URL . '/admin/afficher_produits.php' ?>">Afficher Produits</a>
+        </li>
+        <li class="<?= (!empty($active) && 'ajouter_produit' === $active) ? 'active' : '' ?>" >
+          <a href="<?= PUBLIC_URL . '/admin/gestion_produits.php' ?>">Ajouter Produit<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="<?= (!empty($active) && 'afficher_clients' === $active) ? 'active' : '' ?>" >
+          <a href="<?= PUBLIC_URL . '/admin/afficher_clients.php' ?>">Afficher Clients</a>
+        </li>
+        <li class="<?= (!empty($active) && 'ajouter_client' === $active) ? 'active' : '' ?>" >
+          <a href="<?= PUBLIC_URL . '/admin/gestion_clients.php' ?>">Ajouter Client<span class="sr-only">(current)</span></a>
+        </li>
         <li><a href="">Deconnexion</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
