@@ -13,8 +13,8 @@ require_once( 'includes/menu.inc.php' );
 <div class="row">
   <?php foreach($produits as $key => $value) : ?>
     <div class="col-md-6">
-      <form action="ajout_panier.php" style="border: 2px solid black; padding: 5px;">
-        <input type="hidden" value="<?= $value['id'] ?>">
+      <form method="post" action="ajout_panier.php" style="border: 2px solid black; padding: 5px;">
+        <input type="hidden" name="id_produit" value="<?= $value['id'] ?>">
         <p>reference : <?= $value['reference'] ?></p>
         <p>titre : <?= $value['titre'] ?></p>
         <p>photo : <a href="fiche_produit.php?id=<?= $value['id'] ?>">

@@ -72,3 +72,13 @@ function selectAll($table) {
 
 	return $rows;
 }
+
+
+function addToCart($produit) {
+	$_SESSION['cart']['id'][] = $produit['id'];
+	$_SESSION['cart']['prix'][] = $produit['prix'];
+	$_SESSION['cart']['reference'][] = $produit['reference'];
+	$_SESSION['cart']['titre'][] = $produit['titre'];
+	$_SESSION['cart']['quantite'][] = $produit['quantite'];
+	$_SESSION['cart']['photo'][] = $produit['photo'];
+}
