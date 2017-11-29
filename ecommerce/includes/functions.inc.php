@@ -5,7 +5,7 @@ Fichier de code commun a notre application
 */
 
 function dd($arg, $mode = false){
-	echo '<pre style="position:absolute; z-index:99999; background: orange; font-weight: bold; padding: 10px;">';
+	echo '<pre style="position:relative; z-index:99999; background: orange; font-weight: bold; padding: 10px;">';
 	if($mode) {
 		var_dump($arg);
 	} else {
@@ -16,7 +16,7 @@ function dd($arg, $mode = false){
 }
 
 function dump($arg, $mode = false) {
-	echo '<pre style="position:absolute; z-index:99999; background: #87D37C; font-weight: bold; padding: 10px;">';
+	echo '<pre style="position:relative; z-index:99999; background: #87D37C; font-weight: bold; padding: 10px;">';
 	if($mode) {
 		var_dump($arg);
 	} else {

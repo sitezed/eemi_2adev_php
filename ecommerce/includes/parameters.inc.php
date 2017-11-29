@@ -12,4 +12,4 @@ $pdo = new PDO('mysql:host=localhost;dbname=ecommerce', 'root', 'root',
 		PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 	]);
 const PUBLIC_URL = 'http://apache.php71/eemi/php/ecommerce'; // base de mon URL
-const PUBLIC_PATH = '/eemi/php/ecommerce'; // racine de mon serveur
+define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'] .  '/eemi/php/ecommerce'); // racine de mon serveur

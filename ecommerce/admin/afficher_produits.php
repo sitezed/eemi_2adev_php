@@ -6,10 +6,20 @@ $active = 'afficher_produits';
 
 // suppression d'un produit
 if(!empty($_GET['suppr']) && is_numeric($_GET['suppr'])) {
+  // recuperation du nom de la photo a supprimer
+  $getPhoto = $pdo->prepare('SELECT photo FROM produits WHERE id = :id');
+  $getPhoto->bindValue(':id', $_GET['suppr']);
+  $getPhoto->execute();
+  $photo = $getPhoto->fetch(PDO::FETCH_ASSOC);
+
 	$delete = $pdo->prepare( 'DELETE FROM produits WHERE id = :id' );
 	$delete->bindValue( ':id', $_GET['suppr'], PDO::PARAM_INT );
 	$supprOk = $delete->execute();
 	if ( $supprOk ) {
+	  // si le fichier existe, je le supprime
+	  if(file_exists(PUBLIC_PATH . '/assets/photos/' . $photo['photo'])) {
+	    unlink(PUBLIC_PATH . '/assets/photos/' . $photo['photo']);
+    }
 		$msg = '<div class="alert alert-success">Suppression du produit ' . $_GET['suppr'] . ' OK !</div>';
 	} else {
 		$msg = '<div class="alert alert-danger">Probleme lors de la suppression du produit ' . $_GET['suppr'] . '.<br>Veuillez actualiser la page et reessayer</div>';
