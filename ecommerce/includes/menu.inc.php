@@ -26,6 +26,9 @@
         <li class="<?= (!empty($active) && 'ajouter_client' === $active) ? 'active' : '' ?>" >
           <a href="<?= PUBLIC_URL . '/admin/gestion_clients.php' ?>">Ajouter Client<span class="sr-only">(current)</span></a>
         </li>
+        <li class="<?= (!empty($active) && 'catalogue_produits' === $active) ? 'active' : '' ?>" >
+          <a href="<?= PUBLIC_URL . '/catalogue_produits.php' ?>">Catalogue des produits<span class="sr-only">(current)</span></a>
+        </li>
         <li><a href="">Deconnexion</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

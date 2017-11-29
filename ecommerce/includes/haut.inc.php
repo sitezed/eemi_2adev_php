@@ -9,6 +9,11 @@
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title><?= $title ?></title>
+  <style>
+    input, textarea {
+      background-color: white !important;
+    }
+  </style>
 </head>
 <body>
 <div class="container">

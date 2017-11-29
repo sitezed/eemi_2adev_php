@@ -46,15 +46,29 @@ function clean($string) {
  * @return mixed
  */
 
-$mavariable = 'ok';
 function selectOne($table, $id) {
 
 	global $pdo; // je recupere $pdo de l'exterieur de la fonction
-	$rowToGet = $pdo->prepare('SELECT * FROM '.$table.' WHERE id = :id');
+	$rowToGet = $pdo->prepare('SELECT * FROM ' . $table . ' WHERE id = :id');
 	$rowToGet->bindValue(':id', $id, PDO::PARAM_INT);
 	$rowToGet->execute();
 	$row = $rowToGet->fetch(PDO::FETCH_ASSOC);
 
 	return $row;
 
+}
+
+/**
+ * Recuperer toutes les infos d'une table
+ *
+ * @param $table string // Nom de la table
+ *
+ * @return array // resultats de la requete
+ */
+function selectAll($table) {
+	global $pdo; // je recupere $pdo de l'exterieur de la fonction
+	$rowsToGet = $pdo->query('SELECT * FROM ' . $table);
+	$rows = $rowsToGet->fetchAll(PDO::FETCH_ASSOC);
+
+	return $rows;
 }
