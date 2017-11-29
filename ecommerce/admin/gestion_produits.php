@@ -11,12 +11,23 @@ if(!empty($_SESSION['error_message'])) {
 } else if(!empty($_SESSION['success_message'])) {
 	$msg = '<div class="alert alert-success">'. $_SESSION['success_message'] . '</div>';
 	unset($_SESSION['success_message']);
+	$success = true;
 }
 
 if(!empty($_SESSION['old_values'])) {
-	extract($_SESSION['old_values']); // je fabrique des variables a partir des cles du tableau DONC $_SESSION['titre'] devient $titre
+  if(!isset($success)) { // si je n'ai pas le message d'enregistrement avec succes
+	  extract($_SESSION['old_values']); // je fabrique des variables a partir des cles du tableau DONC $_SESSION['titre'] devient $titre
+  }
   unset($_SESSION['old_values']); // j'ai recupere les infos de ol_values, je peux detruire ce tableau.
 }
+
+if(!empty($_GET['modif']) && is_numeric($_GET['modif'])) {
+  $productToModif = $pdo->prepare('SELECT * FROM produits WHERE id = :id');
+  $productToModif->bindValue(':id', $_GET['modif'], PDO::PARAM_INT);
+  $productToModif->execute();
+  $product = $productToModif->fetch(PDO::FETCH_ASSOC);
+}
+
 require_once('../includes/haut.inc.php');
 require_once('../includes/menu.inc.php');
 ?>

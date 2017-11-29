@@ -35,3 +35,24 @@ function clean($string) {
 
 	return $string;
 }
+
+
+/**
+ * fonction permettant de generer des requetes select par ID de maniere dynamique
+ *
+ * @param string $table
+ * @param int $id
+ *
+ * @return mixed
+ */
+function selectOne(string $table, int $id) {
+
+	global $pdo; // je recupere $pdo de l'exterieur de la fonction
+	$rowToGet = $pdo->prepare('SELECT * FROM '.$table.' WHERE id = :id');
+	$rowToGet->bindValue(':id', $id, PDO::PARAM_INT);
+	$rowToGet->execute();
+	$row = $rowToGet->fetch(PDO::FETCH_ASSOC);
+
+	return $row;
+
+}

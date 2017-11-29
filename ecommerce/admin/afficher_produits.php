@@ -63,7 +63,7 @@ if ( ! empty( $products ) && is_array( $products ) ) :
           </td>
 				<?php endforeach; ?>
         <td>
-          <a href="<?= PUBLIC_URL . '/admin/gestion_produits?modif=' . $value['id'] ?>">
+          <a href="<?= PUBLIC_URL . '/admin/gestion_produits.php?modif=' . $value['id'] ?>">
             <i class="fa fa-pencil"></i>
           </a>
         </td>
