@@ -2,6 +2,23 @@
 require_once( 'includes/init.inc.php' );
 $title = 'Votre panier';
 
+/*
+- fiche produit
+  Afficher le detail du produit, en ayant cliqué dessus à partir du catalogue produit
+- Affichage / Ajout / Suppression / Modification des clients (pareil que la gesion des produits côté back office)
+- Gestion des quantités dans le panier en Ajax
+
+>> Bonus :
+- insertion des commandes apres avoir cliqué sur le bouton << commander >> (on considere que les paiements se font en cheque) (prevoir une table commandes et details_comandes)
+- Affichage / Ajout / Suppression / Modification des commandes
+
+
+
+
+*/
+
+
+
 // creer un table HTML representant le panier
 // avec suppression d'un produit (bouton X sur la ligne du produit)
 // avec suppression de l'ensemble du panier (bouton vider le panier)
