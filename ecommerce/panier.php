@@ -12,6 +12,10 @@ if(!empty($_GET['action']) && $_GET['action'] === 'empty_cart') {
 	unset($_SESSION['cart']);
 }
 
+if(!empty($_GET['suppr']) && is_numeric($_GET['suppr'])) {
+	deleteFromCart($_GET['suppr']);
+}
+
 require_once 'includes/haut.inc.php';
 require_once 'includes/menu.inc.php';
 
@@ -69,9 +73,9 @@ if(!empty($_SESSION['cart'])) :
             <button class="btn btn-info btn-sm">
               <i class="fa fa-refresh"></i>
             </button>
-            <button class="btn btn-danger btn-sm">
+            <a href="?suppr=<?= $_SESSION['cart']['id'][ $i ] ?>" class="btn btn-danger btn-sm">
               <i class="fa fa-trash-o"></i>
-            </button>
+            </a>
           </td>
         </tr>
 
@@ -113,8 +117,6 @@ if(!empty($_SESSION['cart'])) :
           <td colspan="2" class="hidden-xs"></td>
         </tr>
       </table>
-
-
     </div>
 <?php
 endif; // if(!empty($_SESSION['cart']))

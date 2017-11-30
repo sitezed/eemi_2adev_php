@@ -86,14 +86,14 @@ function addToCart(array $produit, $quantite) {
 	// si $_SESSION['cart'] existe et n'est pas vide ET l'indice ['id'] existe dans le tableau $_SESSION['cart']
 	if(!empty($_SESSION['cart']) && array_key_exists('id', $_SESSION['cart'])) {
 		// nous devons savoir si $produit['id'] que l'on souhaite ajouter est déjà présent dans la session du panier ou non.
-		$positionArticle = array_search($produit['id'],  $_SESSION['cart']['id']); // retourne un chiffre si le produit existe
+		$positionProduit = array_search($produit['id'],  $_SESSION['cart']['id']); // retourne un chiffre si le produit existe
 	}
 
-	// var_dump($positionArticle);
-	if (isset($positionArticle) && $positionArticle !== false) // si le produit est déjà présent dans le panier
+	// var_dump($positionProduit);
+	if (isset($positionProduit) && $positionProduit !== false) // si le produit est déjà présent dans le panier
 	{
-		$_SESSION['cart']['quantite'][$positionArticle] += $quantite ; // nous allons précisement à l'indice de ce produit et nous ajoutons la nouvelle quantite (exemple: +1)
-		$_SESSION['cart']['prix_total_produit'][$positionArticle] = $produit['prix'] * $_SESSION['cart']['quantite'][$positionArticle];
+		$_SESSION['cart']['quantite'][$positionProduit] += $quantite ; // nous allons précisement à l'indice de ce produit et nous ajoutons la nouvelle quantite (exemple: +1)
+		$_SESSION['cart']['prix_total_produit'][$positionProduit] = $produit['prix'] * $_SESSION['cart']['quantite'][$positionProduit];
 	}
 	else         //Sinon si $produit['id'] du produit n'existe pas dans le panier, on ajoute $produit['id'] du produit dans un nouvel indice du tableau. les crochets [] permettent de mettre à l'indice suivant.
 	{
@@ -104,5 +104,31 @@ function addToCart(array $produit, $quantite) {
 		$_SESSION['cart']['titre'][]     = $produit['titre'];
 		$_SESSION['cart']['quantite'][]  = $quantite;
 		$_SESSION['cart']['photo'][]     = $produit['photo'];
+	}
+}
+
+
+/**
+ * Supprimer un produit du panier en se basant sur son ID
+ *
+ * @param $productId int
+ *
+ * @reurn void
+ */
+function deleteFromCart($productId) {
+	if(!empty($_SESSION['cart']) && array_key_exists('id', $_SESSION['cart'])) {
+		// nous devons savoir si $produit['id'] que l'on souhaite supprimer est présent dans la session du panier ou non.
+		$positionProduit = array_search($productId,  $_SESSION['cart']['id']); // retourne un chiffre si le produit existe
+	}
+
+	if (isset($positionProduit) && $positionProduit !== false) // si le produit est déjà présent dans le panier
+	{
+		array_splice($_SESSION['cart']['id'], $positionProduit,1);
+		array_splice($_SESSION['cart']['prix_total_produit'], $positionProduit,1);
+		array_splice($_SESSION['cart']['prix_unitaire'], $positionProduit,1);
+		array_splice($_SESSION['cart']['reference'], $positionProduit,1);
+		array_splice($_SESSION['cart']['titre'], $positionProduit,1);
+		array_splice($_SESSION['cart']['quantite'], $positionProduit,1);
+		array_splice($_SESSION['cart']['photo'], $positionProduit,1);
 	}
 }
