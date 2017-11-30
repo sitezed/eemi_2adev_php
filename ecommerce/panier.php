@@ -12,6 +12,7 @@ if(!empty($_GET['action']) && $_GET['action'] === 'empty_cart') {
 	unset($_SESSION['cart']);
 }
 
+// suppresion d'un produit du panier
 if(!empty($_GET['suppr']) && is_numeric($_GET['suppr'])) {
 	deleteFromCart($_GET['suppr']);
 }
