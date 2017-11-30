@@ -73,12 +73,35 @@ function selectAll($table) {
 	return $rows;
 }
 
+/**
+ * Ajouter un produit au panier
+ *
+ * @param $produit array
+ * @param $quantite int
+ *
+ * @return void
+ */
+function addToCart(array $produit, $quantite) {
 
-function addToCart($produit) {
-	$_SESSION['cart']['id'][] = $produit['id'];
-	$_SESSION['cart']['prix'][] = $produit['prix'];
-	$_SESSION['cart']['reference'][] = $produit['reference'];
-	$_SESSION['cart']['titre'][] = $produit['titre'];
-	$_SESSION['cart']['quantite'][] = $produit['quantite'];
-	$_SESSION['cart']['photo'][] = $produit['photo'];
+	// si $_SESSION['cart'] existe et n'est pas vide ET l'indice ['id'] existe dans le tableau $_SESSION['cart']
+	if(!empty($_SESSION['cart']) && array_key_exists('id', $_SESSION['cart'])) {
+		// nous devons savoir si $produit['id'] que l'on souhaite ajouter est déjà présent dans la session du panier ou non.
+		$positionArticle = array_search($produit['id'],  $_SESSION['cart']['id']); // retourne un chiffre si le produit existe
+	}
+
+	// var_dump($positionArticle);
+	if (isset($positionArticle) && $positionArticle !== false) // si le produit est déjà présent dans le panier
+	{
+		$_SESSION['cart']['quantite'][$positionArticle] += $quantite ; // nous allons précisement à l'indice de ce produit et nous ajoutons la nouvelle quantite (exemple: +1)
+	}
+	else         //Sinon si $produit['id'] du produit n'existe pas dans le panier, on ajoute $produit['id'] du produit dans un nouvel indice du tableau. les crochets [] permettent de mettre à l'indice suivant.
+	{
+
+		$_SESSION['cart']['id'][]        = $produit['id'];
+		$_SESSION['cart']['prix'][]      = $produit['prix'];
+		$_SESSION['cart']['reference'][] = $produit['reference'];
+		$_SESSION['cart']['titre'][]     = $produit['titre'];
+		$_SESSION['cart']['quantite'][]  = $quantite;
+		$_SESSION['cart']['photo'][]     = $produit['photo'];
+	}
 }
