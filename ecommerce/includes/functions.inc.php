@@ -93,12 +93,13 @@ function addToCart(array $produit, $quantite) {
 	if (isset($positionArticle) && $positionArticle !== false) // si le produit est déjà présent dans le panier
 	{
 		$_SESSION['cart']['quantite'][$positionArticle] += $quantite ; // nous allons précisement à l'indice de ce produit et nous ajoutons la nouvelle quantite (exemple: +1)
+		$_SESSION['cart']['prix_total_produit'][$positionArticle] = $produit['prix'] * $_SESSION['cart']['quantite'][$positionArticle];
 	}
 	else         //Sinon si $produit['id'] du produit n'existe pas dans le panier, on ajoute $produit['id'] du produit dans un nouvel indice du tableau. les crochets [] permettent de mettre à l'indice suivant.
 	{
-
 		$_SESSION['cart']['id'][]        = $produit['id'];
-		$_SESSION['cart']['prix'][]      = $produit['prix'];
+		$_SESSION['cart']['prix_total_produit'][]= $produit['prix'] * $quantite; // prix total selon la quantite
+		$_SESSION['cart']['prix_unitaire'][]= $produit['prix']; // prix total selon la quantite
 		$_SESSION['cart']['reference'][] = $produit['reference'];
 		$_SESSION['cart']['titre'][]     = $produit['titre'];
 		$_SESSION['cart']['quantite'][]  = $quantite;
