@@ -1,0 +1,65 @@
+1. Installation Laravel
+lien : https://laravel.com/docs/5.5/installation
+commande : composer create-project --prefer-dist laravel/laravel nom_projet
+IMPORTANT : votre site se trouve sur localhost/public/
+IMPORTANT : desactiver la securite token dans /app/Http/Kernel.php, passer en commentaire la ligne 36 (verifycsrfToken..)
+IMPORTANT : creer la base de données
+IMPORTANT : avec le terminal se positionner dans le dossier Laravel (nom_projet) pour taper les commandes artisan
+
+2. Creation de ses migrations 
+IMPORTANT : nommer totues vos tables au pluriel 
+Les migrations son les fichiers representants les tables de la BDD
+doc : https://laravel.com/docs/5.5/migrations
+commande : php artisan make:migration create_nom_table --create=nom_table
+Le fichier se trouve alors dans /migrations/2017_12_13_150256_create_nom_table.php
+Ecrire les noms des champs de la maniere suivante :
+			$table->string('reference', 30);
+            $table->string('titre', 30);
+Note : les ids et created_at updated_at sont automatiques
+
+3. Configurer son .env pour connecter sa base de données. Le fichier se trouve a la racine.
+DB_DATABASE=nom_bdd
+DB_USERNAME=username
+DB_PASSWORD=mot de passe
+
+4. tout commence à partir du fichier /routes/web.php
+Dans ce fichier nous creons le controller où nous devons pointer, le nom de la fonction, le nom de l´url et éventuellement le nom de la route pour l´appeler
+
+5. créer le Controller.
+commande exemple : php artisan make:controller ProductController
+le fichier apparait alors dans /app/Http/Controllers/ProductController.php
+
+6. créer le model à l´aide de artisan 
+commande : php artisan make:model Table
+IMPORTANT : Table est le nom que vous donnez à votre model, il doit correspondre au nom de la table sans "S". Premiere lettre majuscule par convention
+
+7. installer un module Laravel exemple Laracast Flash pour les messages sucess error
+lien : https://github.com/laracasts/flash
+commande : composer require laracasts/flash
+Lire la doc sur https://github.com/laracasts/flash ....
+Infos complementaires :
+- Ajouter cette ligne 
+Laracasts\Flash\FlashServiceProvider::class,
+Dans /config/app.php
+aux environs de la ligne 170
+- Ajouter cette ligne, dans le view blade qui va afficher le message 
+@include('flash::message')
+
+Les vues se trouvent dans /resources/views/dossier_vue/nom_vue.blade.php
+
+Apres avoir copié le dossier des sources dans son serveur, faire la commande :
+composer update
+php artisan migrate
+
+Commandes sympas :
+php artisan migrate:fresh        permet de remettre la BDD a zero
+
+- Installer le plugin laravel de phpstorm :
+> File > Settings > Plugins > Browse repositories
+: rechercher Laravel, installer Laravel Plugin (+ de 400 000 téléchargements)
+: redemarrer PHPStorm
+
+- Activer Laravel plugin
+> File > Settings > languages and frameworks > PHP > Laravel
+: cocher les 2 cases 
+: redemarrer
