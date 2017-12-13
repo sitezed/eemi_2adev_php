@@ -5,6 +5,9 @@ IMPORTANT : votre site se trouve sur localhost/public/
 IMPORTANT : desactiver la securite token dans /app/Http/Kernel.php, passer en commentaire la ligne 36 (verifycsrfToken..)
 IMPORTANT : creer la base de données
 IMPORTANT : avec le terminal se positionner dans le dossier Laravel (nom_projet) pour taper les commandes artisan
+IMPORTANT : commandes a faire pour eviter les problemes :
+sudo chmod -R 777 storage/
+sudo chmod -R 777 bootstrap/cache/
 
 2. Creation de ses migrations 
 IMPORTANT : nommer totues vos tables au pluriel 
