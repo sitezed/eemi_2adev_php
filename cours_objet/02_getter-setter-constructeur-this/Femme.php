@@ -83,6 +83,7 @@ class Femme
 
 $personne = new Femme('sophie', 'coco', 20); // le constructor se declenche a l'appel du mot clé "new"
 $personne->__construct('lidia', 'riri', 24); // on peut aussi appeler directement le constructor comme une méthode normale
+$personne->setAge(30); // je modifie l'age
 echo '<hr>';
 echo $personne->getPrenom() . ' ' . $personne->getNom();
 echo '<hr>';
