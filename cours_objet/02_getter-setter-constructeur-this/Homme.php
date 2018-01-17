@@ -43,6 +43,20 @@ class Homme
 		}
 	}
 
+	public function setAge(int $argument) {
+		try {
+			if(is_numeric($argument) && $argument > 18 ) {
+				$this->age = $argument; // j'accede à la prop private
+			} else {
+				throw new InvalidArgumentException('Type integer et chiffre plus de 18 demandé');
+			}
+		} catch (InvalidArgumentException $e) {
+			echo '<pre>';
+			print_r($e->getMessage());
+			echo '</pre>';
+		}
+	}
+
 	public function getPrenom() {
 		return ucfirst(mb_strtolower($this->prenom)); // je desire transformer le prenom en premiere letre majuscule avant de le donner
 	}
@@ -51,14 +65,20 @@ class Homme
 		return mb_strtoupper($this->nom); // je desire transformer le nom, tout en letres majuscules avant de le donner
 	}
 
+	public function getAge() {
+		return $this->age;
+	}
+
 }
 
 $personne = new Homme();
 $personne->setPrenom('niColas');
 $personne->setNom('duRanD');
+$personne->setAge(19);
 echo '<hr>';
 echo $personne->getPrenom() . ' ' . $personne->getNom();
 echo '<hr>';
+echo 'la personne a '. $personne->getAge() . ' ans';
 
 // enregistrer un age de + de 18 ans
 // afficher "la personne a [X] ans "
