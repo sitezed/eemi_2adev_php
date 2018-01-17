@@ -58,8 +58,8 @@ echo '<br>';
 
 }
 
-$monPanier  = new Homme(); // ici, je fais une instance de la classe Panier, autrement dit, je crée un objet Panier à partir de la classe Panier. La classe est une sorte de "moule" à fabriquer des objets
-$monPanier2 = new Homme; // pareil, je peux utiliser la syntaxe avec ou sans "()"
+$monPanier  = new Panier(); // ici, je fais une instance de la classe Panier, autrement dit, je crée un objet Panier à partir de la classe Panier. La classe est une sorte de "moule" à fabriquer des objets
+$monPanier2 = new Panier; // pareil, je peux utiliser la syntaxe avec ou sans "()"
 
 echo $monPanier->nbProduit; // j'accede à ma propriété depuis l'exterieur de la classe
 echo '<br>';
