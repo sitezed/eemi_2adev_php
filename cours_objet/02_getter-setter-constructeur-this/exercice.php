@@ -35,15 +35,29 @@ UML:
 class Vehicule {
 	protected $litres;
 
-	public function setLitres(int $litres){
+	/**
+	 * @param int $litres
+	 *
+	 * @return void
+	 */
+	public function setLitres(int $litres): void
+	{
 		if(is_numeric($litres) && $litres <= 50) {
 			$this->litres = $litres;
 		} else {
 			echo "Le véhicule doit posséder maximum 50 litres et le type doit être un chiffre<hr>";
 		}
+
+		return;
 	}
 
-	public function getLitres(){
+	// en PHP 7 nous avons la possibilité de typer nos valeurs de retour. Dans ma méthode, ici, j'indique que je retourne un type integer, donc on indique "int".
+
+	/**
+	 * @return int
+	 */
+	public function getLitres(): int
+	{
 		return $this->litres;
 	}
 }
@@ -57,6 +71,7 @@ class Pompe {
 	 *
 	 * @param int $stock
 	 */
+	// en PHP 7 nous avons la possibilité de typer nos valeurs de retour. Dans ma méthode, ici, j'indique que je ne retourne rien (pas de réponse de la méthode), donc on indique "void".
 	public function setStock(int $stock): void
 	{
 		if(is_numeric($stock)) {
@@ -64,18 +79,27 @@ class Pompe {
 		} else {
 			echo "le stock doit être numérique";
 		}
+
+		return;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
-	public function getStock()
+	public function getStock(): int
 	{
 		return $this->stock;
 	}
 
 	// mon argument EST un objet Vehicule
-	public function donnerEssence(Vehicule $vehicule) {
+
+	/**
+	 * @param \Vehicule $vehicule
+	 *
+	 * @return void
+	 */
+	public function donnerEssence(Vehicule $vehicule): void
+	{
 		$dansVoiture = $vehicule->getLitres(); // je recupere le nombre de litres dispo dans la voiture
 		$stockPompe = $this->getStock(); // je prend le stock actuel de la pompe
 		$essenceADonner = 50 - $dansVoiture; // donne 45
