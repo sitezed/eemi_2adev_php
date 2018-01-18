@@ -110,6 +110,8 @@ class Pompe {
 			$this->setStock($stockPompe - $essenceADonner); // 800 - 45 = 755
 			$vehicule->setLitres($plein); // 45 + 5 = 50
 		}
+
+		return;
 	}
 
 }
