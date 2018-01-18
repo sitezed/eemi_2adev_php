@@ -39,7 +39,7 @@ class Vehicule {
 		if(is_numeric($litres) && $litres <= 50) {
 			$this->litres = $litres;
 		} else {
-			echo "Le véhicule doit posséder maximum 50 litres et le type doit être un chiffre";
+			echo "Le véhicule doit posséder maximum 50 litres et le type doit être un chiffre<hr>";
 		}
 	}
 
@@ -80,8 +80,12 @@ class Pompe {
 		$stockPompe = $this->getStock(); // je prend le stock actuel de la pompe
 		$essenceADonner = 50 - $dansVoiture; // donne 45
 
-		$vehicule->setLitres($essenceADonner + $dansVoiture); // 45 + 5 = 50
-		$this->setStock($stockPompe - $essenceADonner); // 800 - 45 = 755
+		$plein = $essenceADonner + $dansVoiture;
+		// je verifie si $plein ne depasse pas 50L avant de faire les affectations
+		if($plein <= 50) {
+			$this->setStock($stockPompe - $essenceADonner); // 800 - 45 = 755
+			$vehicule->setLitres($plein); // 45 + 5 = 50
+		}
 	}
 
 }
@@ -107,7 +111,13 @@ $stockPompe = $pompe->getStock();
 echo "Il y a $stockPompe L dans la pompe<hr>";
 
 //7
+$pompe->donnerEssence($voiture);
 
+//8
+echo "Après ravitaillement : " . $voiture->getLitres() . "L<hr>";
+
+//9
+echo "Stock restant pour la pompe : " . $pompe->getStock() . "L<hr>";
 
 
 
