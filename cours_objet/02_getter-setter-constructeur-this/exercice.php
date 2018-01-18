@@ -96,9 +96,9 @@ class Pompe {
 	/**
 	 * @param \Vehicule $vehicule
 	 *
-	 * @return void
+	 * @return int
 	 */
-	public function donnerEssence(Vehicule $vehicule): void
+	public function donnerEssence(Vehicule $vehicule): int
 	{
 		$dansVoiture = $vehicule->getLitres(); // je recupere le nombre de litres dispo dans la voiture
 		$stockPompe = $this->getStock(); // je prend le stock actuel de la pompe
@@ -111,7 +111,7 @@ class Pompe {
 			$vehicule->setLitres($plein); // 45 + 5 = 50
 		}
 
-		return;
+		return $essenceADonner;
 	}
 
 }
@@ -144,6 +144,28 @@ echo "Après ravitaillement : " . $voiture->getLitres() . "L<hr>";
 
 //9
 echo "Stock restant pour la pompe : " . $pompe->getStock() . "L<hr>";
+
+
+//---------------
+$voiture2 = new Vehicule();
+$voiture3 = new Vehicule();
+$voiture4 = new Vehicule();
+
+$voiture2->setLitres(20);
+$voiture3->setLitres(25);
+$voiture4->setLitres(10);
+
+echo $pompe->donnerEssence($voiture2) . 'L ont été donné à la voiture 2<hr>';
+echo "Après ravitaillement Voiture 2 : " . $voiture->getLitres() . "L<hr>";
+echo "Stock restant pour la pompe après voiture 2 : " . $pompe->getStock() . "L<hr>";
+
+echo $pompe->donnerEssence($voiture3) . 'L ont été donné à la voiture 3<hr>';
+echo "Après ravitaillement Voiture 3 : " . $voiture->getLitres() . "L<hr>";
+echo "Stock restant pour la pompe après voiture 3 : " . $pompe->getStock() . "L<hr>";
+
+echo $pompe->donnerEssence($voiture4) . 'L ont été donné à la voiture 4<hr>';
+echo "Après ravitaillement Voiture 4 : " . $voiture->getLitres() . "L<hr>";
+echo "Stock restant pour la pompe après voiture 4 : " . $pompe->getStock() . "L<hr>";
 
 
 
