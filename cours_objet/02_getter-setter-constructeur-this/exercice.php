@@ -81,7 +81,7 @@ class Pompe {
 		$essenceADonner = 50 - $dansVoiture; // donne 45
 
 		$plein = $essenceADonner + $dansVoiture;
-		// je verifie si $plein ne depasse pas 50L avant de faire les affectations
+		// je verifie si $plein ne depasse pas 50L avant de faire les affectations (question 8)
 		if($plein <= 50) {
 			$this->setStock($stockPompe - $essenceADonner); // 800 - 45 = 755
 			$vehicule->setLitres($plein); // 45 + 5 = 50
