@@ -36,6 +36,7 @@ echo $doc2->info; // test
 $doc3 = Document::getInstance();
 echo $doc3->info; // test
 
+
 // $doc4 = clone $doc; // ERROR >> private
 // var_dump($doc4);
 
