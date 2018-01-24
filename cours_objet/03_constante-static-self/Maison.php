@@ -41,12 +41,14 @@ echo 'Type de mur Class Maison : ' . Maison::getTypeMur(). '<hr>';
 
 $laLouisiane = new Maison();
 $autreMaison = new Maison();
+$maison3 = new Maison();
 
 $laLouisiane->setCouleur('rouge');
 $autreMaison->setCouleur('jaune');
 
 echo $laLouisiane->getCouleur() . '<hr>'; // rouge
 echo $autreMaison->getCouleur() . '<hr>'; // jaune
+echo $maison3->getCouleur() . '<hr>'; //
 
 echo $laLouisiane::getTypeMur() . '<hr>'; // brique
 echo $autreMaison::getTypeMur() . '<hr>'; // brique
@@ -71,3 +73,14 @@ echo $autreMaison::getTypeMur() . '<hr>'; // paille
 echo $encoreMaison::getTypeMur() . '<hr>'; // paille
 
 var_dump($encoreMaison);
+
+/*
+Rappel : membres = propriétés et méthodes dans une classe ou un objet
+- le mot clé "self" renvoi aux membres de la classe.
+- le mot clé "this" renvoi aux membres de l'objet.
+- "::" permet d'accéder aux membres de la classe (possibilité de manipulation de la classe sans l'instancier)
+- "->" permet d'accéder aux membres de l'objet (obliger de créer l'objet avant de pouvoir accéder à ses membres)
+- "static" permet de créer / déclarer des membres de Classe
+- lorsqu'il n'y a pas écrit "static", c'est nécessairement un membre d'objet
+
+ * */

@@ -1,0 +1,16 @@
+- creer une classe Chaussure
+- une proprieté d'objet "couleur" accessible depuis l'extérieure de la classe
+- une propriété de classe "paysFabrication" accessible depuis l'exterieur de la classe
+- une constante "matiere" portant la valeur "cuir" accessible depuis l'exterieur de la classe
+- une propriété d'objet "pointure" accessible depuis l'intérieur de classe et de ses héritières
+- un getter et un setter pointure qui vérifie que c'est bien un nombre compris entre 22 et 52.
+- une propriété d'objet marque uniquement accessible depuis l'interieur et héritieres
+- un getter et setter marque, imposant que le texte soit uniquement parmis ces choix : "adidas", "nike", "timberland", "diesel", "reebok", "geox"
+- donner la possibilité au developpeur de remplir les propriétés couleur, pointure et marque dès l'instanciation de la classe Chaussure
+- attribuer la valeur "Chine" à paysFabrication
+- instancier la classe Chaussure en remplissant les propriétés dès l'instanciation (couleur, pointure, marque)
+- afficher les valeurs de couleur, pointure, marque
+- afficher la valeur de paysFabrication
+- modifier les valeurs couleur, pointure, marque
+- verifier vos nouvelles valeurs
+- instancier une seconde fois la classe Chaussure, sans remplir les propriétés (couleur, pointure, marque)
