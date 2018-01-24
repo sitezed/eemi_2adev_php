@@ -1,98 +1,59 @@
 <?php
-abstract class Joueur
+final class Application // une FINAL CLASS est une classe dont on ne peut pas hériter
 {
-	public $info;
-
-	final public function seConnecter() // en passant la fonciton en final, je bloque l'override
-	{
-		if(is_numeric($this->EtreMajeur())) {
-			return $this->EtreMajeur() ;
-		}
-
-		return 'erreur';
-	}
-
-	abstract public function EtreMajeur(); // les méthodes abstraites n'ont pas de contenu (no body /corps).
-
-	abstract public function Devise(); // les méthodes abstraites n'ont pas de contenu (no body /corps).
-}
-
-//-----------------
-class JoueurFr extends Joueur
-{
-	public function EtreMajeur() // je suis obligé de redefinir la méthode de ma classMere sinon j'obtiens une erreur.
-	{
-		return 18;
-	}
-
-	public function Devise()
-	{
-		return '€';
+	public function lancementApplication() {
+		return 'l\'application se lance cela !<br>';
 	}
 }
-
-//-----------------
-class JoueurUs extends Joueur
-{
-	public function EtreMajeur() // je suis obligé de redefinir la méthode de ma classMere sinon j'obtiens une erreur.
-	{
-		return 21;
-	}
-
-	public function Devise()
-	{
-		return '$';
-	}
-}
-
-//-----------------
-// $Joueur = new Joueur();  // erreur, une class abstraites n'est pas instanciable !
-$joueurFr = new JoueurFr;
-echo $joueurFr->seConnecter();
-echo '<hr />';
-$joueurUs = new JoueurUs;
-echo $joueurUs->seConnecter();
-//-----------------
-/*************
- * - Une classe abstraite n'est pas instanciable.
- * - Les méthodes abstraites n'ont pas de contenu.
- * - Lorsque l'on hérite de méthodes abstraites, nous sommes obligé de les redéfinir.
- * - Pour définir des méthodes abstraites, il est nécessaire que la classe qui les contient soit abstraite.
- * - Une classe abstraite peut contenir des méthodes normales.
- * - Une classe normale NE PEUT PAS contenir des méthodes abstraites
- *
- * Le développeur qui écrit la classe Joueur est au coeur de l'application (noyau) et va obliger les autres développeur à redéfinir la méthode etreMajeur() car non seulement elle est abstraite mais en + elle est exécuté dans la méthode seConnecter() (c'est obligatoire pour se connecter au site de jeu en ligne). Il impose donc de bonnes contraintes (saine).
- **********************/
-
+// erreur je ne peux pas extend une final class
 /*
-o	Le fait de déclarer une classe abstraite permet d’empêcher son « instanciation ».
-o	Pour définir une méthode comme étant abstraite, il faut que la classe elle-même soit abstraite.
-o	Une classe abstraite n’est pas forcément uniquement composée de méthodes abstraites
-o	Quand on hérite (dans une classe fille) de méthodes abstraites, il faut absolument les redéfinir car elles n'ont pas de corps.
-o	Les méthodes abstraites n’ont pas de corps
-
-Le plan d'un plan
-Contexte (poker) : class joueur abstraite non instanciable avec methode connexion abstraite.
-class joueur_fr qui hérite de joueur ou on dois forcément se connecté
-et une méthode "etre_majeur()" qui regarde si le joueur_fr à 18 ans.
-une méthode devise() en euros
-
-class joueur_us qui hérite de joueur ou on dois forcément se connecté
-et une méthode "etre_majeur()" qui regarde si le joueur_us à 21 ans.
-une méthode devise() en dollars
-
-Ceci ne fonctionne pas:
-class test
+class Extension extends Application
 {
-	abstract public function abstraction();
+
 }
-Imaginons que nous ayons une classe Animal et des classes : Chien, Chat, Loup, Eléphant, Chameau.
-Tous sont des animaux et héritent naturellement de la classe « Animal ».
-Cependant aucun d’entre eux n’est « juste animal », un Chien est un chien, et un chat est un chat.
-Par conséquent la classe Animal ne sera jamais instanciée, la classe animale sera abstraite.
-Elle servira de classe modèle pour celle qui en hériteront. En effet chaque animaux dors, chaque animaux mange…
-Ces méthodes « dormir() » ou encore « manger() » seront relative à la classe animal.
-En revanche chaque animal a un cri différent : le chien abboie, le chat miole.
-Ces méthodes cri() seront dans les classes filles.
-Nous pourrons tout de même ajouter la méthode cri() dans la class Animal pour forcer les classes héritière à écrire cette méthode, la méthode cri() sera abstraite.
 */
+$app = new Application(); // je peux !
+echo $app->lancementApplication();
+//------------------------------------------------
+class Application1
+{
+	public function lancementApplication() {
+		return 'La 2eme appli version BETA<br>';
+	}
+}
+class Application2 extends Application1
+{
+	final public function lancementApplication() { // j'arrete la méthode ici, plus possible de l'overrider
+		return 'La 2eme appli version ALPHA<br>';
+	}
+}
+class Extension2 extends Application2
+{
+	//public function lancementApplication() { // erreur !
+	// c'est mort !
+	//}
+}
+
+$ext = new Extension2();
+echo $ext->lancementApplication(); // rien ne m'enpeche de l'utiliser car Extension2 a tout de même hérité de l'utilisation de lancementApplication(). Droit d'utilisation mais pas de modification.
+/********************
+ * Commentaire *
+- une CLASSE finale ne peut pas être héritée
+une classe finale aura forcément des méthodes qui ne pourront pas être surchargées ou redéfinies. (pas d'interet à mettre le mot-clé final sur les méthodes d'une classe final).
+Une class final peut comporter des méthodes normales (mais cela n'a aucun interet car on ne peut pas hériter d'une classe final donc il n'y a aucun risque que les méthodes soient redéfinie).
+Une méthode private avec le mot clé final n'a aucun interet (car on ne peut les modifier qu'à l'intérieur de la classe, elles ne risquent pas de pouvoir être surchargée).
+- une classe finale reste instanciable
+- une méthode finale peut être présente dans une classe normale.
+- une méthode finale permet d'éviter qu'elle soit redéfinie ou surcharger.
+- L'interet de mettre le mot-clé 'final' sur une méthode est de vérouiller afin d'empecher toute sous-classe de la redéfinir (quand nous voulons être sûr que le comportement d'une méthode est préservé durant l'héritage)
+
+ * Cas de figure *
+Cela est pratique si je souhaite développer le noyau de l'application, en m'assurant que la méthodes soit disponible pour les autres développeurs sans qu'ils ne viennent changer le comportement de la méthode lancementApplication().
+Contexte : tu as une class Application sur un site possédant plusieurs
+méthodes clés pour assurer le bon fonctionnement du site. il faut hérité
+de la class Application pour faire une nouvelle extension sur le site
+mais ne pas pouvoir redefinir ou surchargé les méthodes "lancement_site()"
+"chargement_site" elles seront donc finales.
+Sur un énorme projet, en procédurale il faudra que le developpeur
+qui te succède lise tout ton code. en OO tu lui passera juste un UML
+ *******************/
