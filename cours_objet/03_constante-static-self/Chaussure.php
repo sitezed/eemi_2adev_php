@@ -140,3 +140,6 @@ echo $basket->getMarque();
 echo '<hr>';
 
 $boots = new Chaussure();
+
+var_dump($basket);
+var_dump($boots);
