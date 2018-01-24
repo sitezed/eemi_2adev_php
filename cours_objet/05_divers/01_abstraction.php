@@ -36,9 +36,7 @@ class Chat extends Animal
 	}
 }
 
-$animal = new Animal();
-echo $animal->deplacement() . '<hr>';
-echo $animal->manger() . '<hr>';
+// $animal = new Animal(); // error, instanciation de clsse abstraite impossible
 
 // l'éléphant a overridé les méthodes de Animal
 $eleph = new Elephant();
