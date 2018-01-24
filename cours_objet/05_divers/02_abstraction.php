@@ -3,7 +3,7 @@ abstract class Joueur
 {
 	public $info;
 
-	final public function seConnecter() // passer la fonction en final pour montrer l'interet
+	final public function seConnecter() // en passant la fonciton en final, je bloque l'override
 	{
 		if(is_numeric($this->EtreMajeur())) {
 			return $this->EtreMajeur() ;
