@@ -14,12 +14,17 @@ class Chaussure
 	 * @param $marque
 	 * @param $couleur
 	 */
-	public function __construct($pointure = '', $marque = '', $couleur = '')
+	public function __construct($pointure = NULL, $marque = NULL, $couleur = NULL)
 	{
-		$this->couleur = $couleur;
-		$this->setPointure($pointure);
-		$this->setMarque($marque);
-
+		if (!is_null($pointure)) {
+			$this->setPointure($pointure);
+		}
+		if (!is_null($couleur)) {
+			$this->couleur = $couleur;
+		}
+		if (!is_null($marque)) {
+			$this->setMarque($marque);
+		}
 		// le construtor est déclenché lorsqu'on utilise "new". Il nous retourne toujours l'objet créé.
 	}
 
@@ -27,11 +32,12 @@ class Chaussure
 	 * Set de la pointure
 	 *
 	 * @param int $pointure pointure de la chaussure
+	 *
 	 * @return void
 	 */
 	public function setPointure(int $pointure): void
 	{
-		if($this->checkPointure($pointure)) {
+		if ($this->checkPointure($pointure)) {
 			$this->pointure = (int)$pointure;
 		} else {
 			echo 'la pointure doit être un nombre compris entre 22 et 52<hr>';
@@ -54,6 +60,7 @@ class Chaussure
 	 * Set de la marque
 	 *
 	 * @param int $marque marque de la chaussure
+	 *
 	 * @return void
 	 */
 	public function setMarque(string $marque): void
@@ -61,7 +68,7 @@ class Chaussure
 		$acceptedMarque = ['adidas', 'nike', 'timberland', 'diesel', 'reebok', 'geox'];
 		// si je trouve la marque $marque dans l'array préparé
 		$marqueRecuperee = mb_strtolower($marque); // je passe tout en minuscule
-		if(in_array($marqueRecuperee, $acceptedMarque)){
+		if (in_array($marqueRecuperee, $acceptedMarque)) {
 			// alors...
 			$this->marque = $marqueRecuperee;
 		}
@@ -86,13 +93,12 @@ class Chaussure
 	 */
 	protected function checkPointure(int $pointure): bool
 	{
-		if(is_numeric($pointure) && $pointure > 21 && $pointure < 53) {
-			return true;
+		if (is_numeric($pointure) && $pointure > 21 && $pointure < 53) {
+			return TRUE;
 		}
 
 		// si je tombe dans le return true, le return false ne sera pas lu
-		return false;
-
+		return FALSE;
 	}
 
 }
