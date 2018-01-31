@@ -2,9 +2,9 @@
 function inclusionAutomatique($nomDeLaClasse)
 {
 	include_once($nomDeLaClasse . '.php');
-	//	include_once("A.class.php");
-	echo "on passe dans inclusionAutomatique!<br />";
-	echo "require($nomDeLaClasse.class.php);<br />";
+	//	include_once("A.php");
+	echo "On passe dans la fonction inclusionAutomatique!<br />";
+	echo "On fait donc un include de $nomDeLaClasse.php";
 }
 //------------------------------------------------------
 spl_autoload_register('inclusionAutomatique');
