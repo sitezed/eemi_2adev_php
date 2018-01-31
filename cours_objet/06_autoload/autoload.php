@@ -4,7 +4,7 @@ function inclusionAutomatique($nomDeLaClasse)
 	include_once($nomDeLaClasse . '.php');
 	//	include_once("A.php");
 	echo "On passe dans la fonction inclusionAutomatique!<br />";
-	echo "On fait donc un include de $nomDeLaClasse.php";
+	echo "On fait donc un include de $nomDeLaClasse.php<br>";
 }
 //------------------------------------------------------
 spl_autoload_register('inclusionAutomatique');
